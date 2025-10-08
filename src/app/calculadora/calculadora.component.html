@@ -1,6 +1,6 @@
 <div class="container">
     <div class="form-box">
-        <form #frm="ngForm">
+        <form #frm="ngForm" (ngSubmit)="somar()">
             <h2>Calculadora</h2>
             <label for="numero1">Numero 1</label>
             <input 
@@ -16,16 +16,24 @@
                 name="numero2"
                 [(ngModel)]="num2"/>
 
-            <button type="button" (click)="somar()">Calcular</button>
+            <button type="submit">Calcular</button>
         </form>
 
-        <div class="result-display">            
-            <p>
-                Resultado: 
-                <span id="result">
-                    {{ resultado }}                
-                </span></p>
+
+        <div class="result-display" *ngIf="!resultado">            
+            O resultado aparecerá abaixo:
         </div>
+
+        @if(resultado) {
+            <div class="result-display">            
+                <p>
+                    Resultado: 
+                    <span id="result">
+                        {{ resultado }}                
+                    </span></p>
+            </div>
+        }
+        
     </div>
 
 </div>
