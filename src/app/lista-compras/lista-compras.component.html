@@ -1,40 +1,48 @@
 <div class="container">
-    <h1>Lista de compras</h1>
+  <h1>Lista de compras</h1>
 
-    <form #frm="ngForm" class="add-item-form" (ngSubmit)="adicionar()">
-        <input type="text" id="item" name="item" placeholder="Digite o nome do item" [(ngModel)]="item">
-        <button type="submit">Adicionar</button>
-        <button type="button" (click)="limparLista()">Limpar lista</button>
-    </form>
+  <form #frm="ngForm" class="add-item-form" (ngSubmit)="adicionar()">
+    <input
+      type="text"
+      id="item"
+      name="item"
+      placeholder="Digite o nome do item"
+      [(ngModel)]="item"
+    />
+    <button type="submit">Adicionar</button>
+    <button type="button" (click)="limparLista()">Limpar lista</button>
+  </form>
 
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>item</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- mostrar linha de aviso quando a lista estiver vazia -->
-            <tr *ngIf="lista.length === 0">
-                <td colspan="3">Nenhum item na lista.</td>
-            </tr>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>item</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- mostrar linha de aviso quando a lista estiver vazia -->
+      <tr *ngIf="lista.length === 0">
+        <td colspan="3">Nenhum item na lista.</td>
+      </tr>
 
-            <!-- linhas da lista -->
-            <tr *ngFor="let item of lista;">
-                <td>{{ item.id }}</td>
-                <td>
-                    <span [ngClass]=" { 'item-riscado' : item.comprado }"> 
-                        {{ item.nome }} 
-                    </span>
-                </td>
-                <td>
-                    <input type="checkbox" 
-                           (click)="itemRiscado(item)" 
-                           [checked]="item.comprado">
-                </td>
-            </tr>
-        </tbody>
-    </table>
+      <!-- linhas da lista -->
+      <tr *ngFor="let item of lista">
+        <td>{{ item.id }}</td>
+        <td>
+          <span [ngClass]="{ 'item-riscado': item.comprado }">
+            {{ item.nome }}
+          </span>
+        </td>
+        <td>
+          <input
+            type="checkbox"
+            (click)="itemRiscado(item)"
+            [checked]="item.comprado"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

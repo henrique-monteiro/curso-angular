@@ -1,4 +1,3 @@
-
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './calculadora.component.html',
-  styleUrls: ['./calculadora.component.scss']
+  styleUrls: ['./calculadora.component.scss'],
 })
 export class CalculadoraComponent {
   num1: number = 0;

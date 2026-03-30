@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input'
-import { MatCardModule } from '@angular/material/card'
-import { FlexLayoutModule } from '@angular/flex-layout'
-import { MatIconModule } from '@angular/material/icon'
-import { FormsModule } from '@angular/forms'
-import { MatTableModule } from '@angular/material/table'
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Cliente } from '../cadastro/Cliente';
@@ -22,33 +22,37 @@ import { ClienteService } from '../../service/cliente.service';
     MatButtonModule,
     FlexLayoutModule,
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './consulta.component.html',
-  styleUrl: './consulta.component.scss'
+  styleUrl: './consulta.component.scss',
 })
 export class ConsultaComponent implements OnInit {
   nomeBusca: string = '';
   listaClientes: Cliente[] = [];
-  colunasTable: string[] = ["id", "nome", "cpf", "dataNascimento", "email", "acoes"]
+  colunasTable: string[] = [
+    'id',
+    'nome',
+    'cpf',
+    'dataNascimento',
+    'email',
+    'acoes',
+  ];
 
   constructor(
     private service: ClienteService,
-    private router: Router
-  ){
+    private router: Router,
+  ) {}
 
+  ngOnInit() {
+    this.listaClientes = this.service.pesquisarClientes('');
   }
 
-  ngOnInit(){
-     this.listaClientes = this.service.pesquisarClientes('');
+  pesquisar() {
+    this.listaClientes = this.service.pesquisarClientes(this.nomeBusca);
   }
 
-  pesquisar(){
-    this.listaClientes = this.service.pesquisarClientes(this.nomeBusca)
+  preparaEditar(id: string) {
+    this.router.navigate(['/cadastro'], { queryParams: { id: id } });
   }
-
-  preparaEditar(id: string){
-    this.router.navigate(['/cadastro'], { queryParams: { "id": id } } )
-  }
-
 }
