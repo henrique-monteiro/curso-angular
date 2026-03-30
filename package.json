@@ -10,6 +10,7 @@
     "serve:ssr:curso-completo": "node dist/curso-completo/server/server.mjs",
     "lint": "ng lint",
     "lint-staged": "lint-staged",
+    "format": "prettier --write \"src/**/*.{ts,html,css}\"",
     "prepare": "husky"
   },
   "private": true,
@@ -50,6 +51,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^16.4.0",
+    "prettier": "3.8.1",
     "typescript": "~5.4.2",
     "typescript-eslint": "8.46.4"
   }
