@@ -67,6 +67,38 @@
               </mat-form-field>
             </div>
           </div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="400px">
+              <mat-form-field class="full-width">
+                <mat-label>UF: *</mat-label>
+                <mat-select
+                  [(value)]="cliente.uf"
+                  (selectionChange)="carregarMunicipios($event)"
+                >
+                  @for (uf of ufs; track $index) {
+                    <mat-option [value]="uf.sigla">
+                      {{ uf.sigla }}
+                    </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="400px">
+              <mat-form-field class="full-width">
+                <mat-label>Municipio: *</mat-label>
+                <mat-select [(value)]="cliente.municipio">
+                  @for (municipio of municipios; track $index) {
+                    <mat-option [value]="municipio.nome">
+                      {{ municipio.nome }}
+                    </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
         </mat-card-content>
         <mat-card-actions>
           @if (!atualizando) {
