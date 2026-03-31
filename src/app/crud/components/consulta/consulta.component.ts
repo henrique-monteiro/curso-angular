@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Cliente } from '../cadastro/Cliente';
 import { ClienteService } from '../../service/cliente.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-consulta',
   standalone: true,
@@ -30,6 +30,7 @@ import { ClienteService } from '../../service/cliente.service';
 export class ConsultaComponent implements OnInit {
   private service = inject(ClienteService);
   private router = inject(Router);
+  snack: MatSnackBar = inject(MatSnackBar);
 
   nomeBusca = '';
   listaClientes: Cliente[] = [];
@@ -61,5 +62,6 @@ export class ConsultaComponent implements OnInit {
   deletar(cliente: Cliente) {
     this.service.deletar(cliente);
     this.listaClientes = this.service.pesquisarClientes('');
+    this.snack.open('Item deletado com sucesso!', 'Ok');
   }
 }

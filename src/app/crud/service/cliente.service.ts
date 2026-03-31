@@ -53,6 +53,9 @@ export class ClienteService {
   }
 
   private obterStorage(): Cliente[] {
+    if (typeof localStorage === 'undefined') {
+      return [];
+    }
     const repositorioClientes = localStorage.getItem(
       ClienteService.REPO_CLIENTES,
     );
