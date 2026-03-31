@@ -7,8 +7,6 @@ import { Cliente } from '../components/cadastro/Cliente';
 export class ClienteService {
   static REPO_CLIENTES = '_CLIENTES';
 
-  constructor() {}
-
   salvar(cliente: Cliente) {
     const storage = this.obterStorage();
     storage.push(cliente);
@@ -41,6 +39,17 @@ export class ClienteService {
   buscarClientePorId(id: string): Cliente | undefined {
     const clientes = this.obterStorage();
     return clientes.find((cliente) => cliente.id === id);
+  }
+
+  deletar(cliente: Cliente) {
+    const storage = this.obterStorage();
+
+    const novaLista = storage.filter((c) => c.id !== cliente.id);
+
+    localStorage.setItem(
+      ClienteService.REPO_CLIENTES,
+      JSON.stringify(novaLista),
+    );
   }
 
   private obterStorage(): Cliente[] {
